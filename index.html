@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roast My CV</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>ROAST MY CV</h1>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+        <div class="upload-section">
+            <button type="button" id="uploadTrigger" class="secondary-btn">📁 Upload CV (PDF/TXT)</button>
+            <input type="file" id="cvFile" accept=".pdf,.txt" style="display: none;">
+            <span id="fileName" class="file-name-display">No file chosen</span>
+        </div>
+
+
+        <div class="input-card">
+            <textarea id="cvInput" placeholder="Paste CV text here..."></textarea>
+            
+            <div class="controls">
+                <select id="toneSelect">
+                    <option value="" disabled selected>Select Tone</option>
+                    <option value="gentle">Gentle</option>
+                    <option value="spicy">Spicy</option>
+                    <option value="savage">Savage</option>
+                </select>
+                <button id="roastBtn">Roast my CV</button>
+            </div>
+            <p class="trust-signal">Text is processed once and discarded</p>
+        </div>
+
+        <div id="results" class="results-container hidden">
+            <div class="result-card roast-border">
+                <h2>THE ROAST</h2>
+                <p id="roastText"></p>
+            </div>
+
+            <div class="result-card fixes-border">
+                <h2>FIXES</h2>
+                <ul id="fixesList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
