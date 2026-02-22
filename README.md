@@ -42,3 +42,14 @@ Just open `index.html` in your browser.
 This project is built in two phases:
 1) **Prototype UI** (this repo version)  
 2) **AI-powered version** (next milestone)
+
+
+## Current Development (AI Integration Phase)
+
+Started backend integration using Node.js and Express.
+The `/roast` endpoint has been created and connected to OpenAI.
+Currently debugging server initialization issues.
+
+Next milestone:
+- Stabilize backend server
+- Replace mock responses with real AI responses
