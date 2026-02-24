@@ -4,7 +4,12 @@ process.on("uncaughtException", (err) => console.error("UNCAUGHT:", err));
 process.on("unhandledRejection", (err) => console.error("UNHANDLED:", err));
 
 
-
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled Rejection:', reason);
+});
 
 
 
