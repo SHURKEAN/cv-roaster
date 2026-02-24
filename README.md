@@ -53,3 +53,7 @@ Currently debugging server initialization issues.
 Next milestone:
 - Stabilize backend server
 - Replace mock responses with real AI responses
+
+## 🤖 AI Engine
+
+This project now uses Grok API for CV analysis and roast generation.
