@@ -3,25 +3,13 @@ process.on("exit", (code) => console.log("PROCESS EXITED with code:", code));
 process.on("uncaughtException", (err) => console.error("UNCAUGHT:", err));
 process.on("unhandledRejection", (err) => console.error("UNHANDLED:", err));
 
+require("dotenv").config();
 
-process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception:', err);
-});
-process.on('unhandledRejection', (reason) => {
-  console.error('Unhandled Rejection:', reason);
-});
-
-
-
-
-
-require('dotenv').config();
-
-const express = require('express');
-const cors = require('cors');
-const { OpenAI } = require('openai');
-const path = require('path');          // ✅ you were missing this
-const fetch = require('node-fetch');   // (only needed if your environment requires it)
+const express = require("express");
+const cors = require("cors");
+const { OpenAI } = require("openai");
+const path = require("path");
+const fetch = require("node-fetch");
 globalThis.fetch = fetch;
 
 // ✅ 1) Create app BEFORE using it
@@ -38,18 +26,19 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "index.html"));
 });
 
-// ✅ 4) OpenAI setup
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+// ✅ 4) Groq setup
+const groq = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
 });
 
 // ✅ 5) Endpoint
-app.post('/roast', async (req, res) => {
+app.post("/roast", async (req, res) => {
   try {
     const { cvText, tone } = req.body;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const response = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
       messages: [
         {
           role: "system",
@@ -60,23 +49,24 @@ You MUST respond ONLY in the following JSON format:
 {
   "roast": "Your witty paragraph here",
   "fixes": ["Fix 1", "Fix 2", "Fix 3"]
-}`
+}`,
         },
-        { role: "user", content: `Roast this CV text: ${cvText}` }
+        { role: "user", content: `Roast this CV text: ${cvText}` },
       ],
-      response_format: { type: "json_object" }
+      response_format: { type: "json_object" },
     });
 
     const result = JSON.parse(response.choices[0].message.content);
 
     res.json({
       roast: result.roast,
-      fixes: result.fixes
+      fixes: result.fixes,
     });
-
   } catch (error) {
-    console.error("OpenAI Error:", error);
-    res.status(500).json({ error: "The AI is currently taking a coffee break. Try again!" });
+    console.error("Groq Error:", error);
+    res
+      .status(500)
+      .json({ error: "The AI is currently taking a coffee break. Try again!" });
   }
 });
 
