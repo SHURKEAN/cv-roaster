@@ -1,59 +1,51 @@
-# CV Roaster 🔥 (Prototype)
+# CV Roaster 🔥
 
-A small web app that lets you upload/paste your CV and get a “roast” + actionable fixes.
-This version is a **prototype**: the responses are **mocked** (generated with if/else) to validate the UI/UX before adding real AI.
+A web app that lets you upload or paste your CV and get an AI-powered roast + actionable fixes.
 
 ## Demo
-- Live demo: (add GitHub Pages link here)
+- Live demo: (add link here)
 - Screenshot: (optional)
 
-## Features (Prototype)
-- Upload CV as **.txt** or **PDF** (PDF text extracted using PDF.js worker)
+## Features
+- Upload CV as **.txt** or **PDF** (text extracted using PDF.js)
 - Paste CV text into a textarea
 - Select tone: **Gentle / Spicy / Savage**
 - Generates:
-  - **The Roast**
-  - **Fixes** (bullet list)
+  - **The Roast** — witty AI feedback
+  - **Fixes** — actionable improvement suggestions
 - Smooth scroll to results
-- Privacy note: text is processed once and discarded (client-side)
+- Privacy note: text is processed once and discarded
 
-## How it works (Prototype)
-1. User uploads a file or pastes CV text.
-2. PDF.js extracts text from PDF (if uploaded).
-3. User selects a tone and clicks "Roast my CV".
-4. The app generates a mock roast + fixes using `if/else` logic (no AI yet).
+## How it works
+1. User uploads a file or pastes CV text
+2. PDF.js extracts text from PDF if uploaded
+3. User selects a tone and clicks "Roast my CV"
+4. Frontend sends CV text to Express backend
+5. Backend calls Groq API (LLaMA 3.1) and returns roast + fixes
 
 ## Tech Stack
-- HTML, CSS, JavaScript (Vanilla)
-- PDF.js (for PDF text extraction)
+- **Frontend:** HTML, CSS, Vanilla JavaScript, PDF.js
+- **Backend:** Node.js, Express
+- **AI:** Groq API (LLaMA 3.1)
 
 ## Running locally
-Just open `index.html` in your browser.
+1. Clone the repo
+2. Install dependencies:
+```bash
+   cd server
+   npm install
+```
+3. Create a `.env` file in the `server` folder:
+```
+   GROQ_API_KEY=your_key_here
+```
+4. Start the server:
+```bash
+   node server.js
+```
+5. Open `http://localhost:3000`
 
-> Tip: If your browser blocks file loading for PDF.js in local mode, run a simple local server.
-
-## Roadmap (Next)
-- Replace mock response generator with a secure AI backend (no API keys in the browser)
-- Return structured results (roast + fixes + rewritten bullet points)
-- Improve validation and edge cases for PDF extraction
-- Deploy full version with backend (Vercel/Render)
-
-## Notes
-This project is built in two phases:
-1) **Prototype UI** (this repo version)  
-2) **AI-powered version** (next milestone)
-
-
-## Current Development (AI Integration Phase)
-
-Started backend integration using Node.js and Express.
-The `/roast` endpoint has been created and connected to OpenAI.
-Currently debugging server initialization issues.
-
-Next milestone:
-- Stabilize backend server
-- Replace mock responses with real AI responses
-
-## 🤖 AI Engine
-
-This project now uses Grok API for CV analysis and roast generation.
+## Roadmap
+- Deploy to Render/Railway with live demo link
+- Add rewritten bullet points as a third output
+- Improve PDF extraction edge cases
