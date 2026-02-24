@@ -1,44 +1,154 @@
-# CV Roaster 🔥 (Prototype)
+# 🔥 CV Roaster
 
-A small web app that lets you upload/paste your CV and get a “roast” + actionable fixes.
-This version is a **prototype**: the responses are **mocked** (generated with if/else) to validate the UI/UX before adding real AI.
+An AI-powered web application that analyzes your CV, delivers a witty roast, and provides actionable improvements — with upcoming job-targeted optimization features.
 
-## Demo
-- Live demo: (add GitHub Pages link here)
-- Screenshot: (optional)
+---
 
-## Features (Prototype)
-- Upload CV as **.txt** or **PDF** (PDF text extracted using PDF.js worker)
-- Paste CV text into a textarea
-- Select tone: **Gentle / Spicy / Savage**
-- Generates:
-  - **The Roast**
-  - **Fixes** (bullet list)
-- Smooth scroll to results
-- Privacy note: text is processed once and discarded (client-side)
+## 🚀 Overview
 
-## How it works (Prototype)
-1. User uploads a file or pastes CV text.
-2. PDF.js extracts text from PDF (if uploaded).
-3. User selects a tone and clicks "Roast my CV".
-4. The app generates a mock roast + fixes using `if/else` logic (no AI yet).
+CV Roaster helps users improve their resumes through structured AI feedback. It combines humor, critique, and practical suggestions to turn weak CVs into competitive ones.
 
-## Tech Stack
-- HTML, CSS, JavaScript (Vanilla)
-- PDF.js (for PDF text extraction)
+Future updates will expand it into a **job-specific CV optimization tool** that aligns your resume with real job descriptions.
 
-## Running locally
-Just open `index.html` in your browser.
+---
 
-> Tip: If your browser blocks file loading for PDF.js in local mode, run a simple local server.
+## ✨ Current Features
 
-## Roadmap (Next)
-- Replace mock response generator with a secure AI backend (no API keys in the browser)
-- Return structured results (roast + fixes + rewritten bullet points)
-- Improve validation and edge cases for PDF extraction
-- Deploy full version with backend (Vercel/Render)
+- Upload CV as **.txt** or **PDF**
+- Automatic PDF text extraction using **PDF.js**
+- Paste CV text directly into a textarea
+- Select tone:
+  - 🟢 Gentle
+  - 🌶 Spicy
+  - 🔥 Savage
+- AI-generated output:
+  - **The Roast** — witty structural critique
+  - **Actionable Fixes** — practical, improvement-focused suggestions
+- Smooth scrolling UI
+- Structured JSON backend responses
+- Privacy-first: CV text is processed once and not stored
 
-## Notes
-This project is built in two phases:
-1) **Prototype UI** (this repo version)  
-2) **AI-powered version** (next milestone)
+---
+
+## 🧠 How It Works
+
+1. User uploads a CV or pastes text
+2. PDF.js extracts text if a PDF is provided
+3. User selects tone and submits
+4. Frontend sends CV text to Express backend
+5. Backend calls **Groq API (LLaMA 3.1)**
+6. Structured response returns:
+   - Roast paragraph
+   - List of actionable fixes
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- HTML
+- CSS
+- Vanilla JavaScript
+- PDF.js
+
+### Backend
+- Node.js
+- Express
+
+### AI
+- Groq API (LLaMA 3.1)
+
+---
+
+## 🔮 Planned Features (Roadmap)
+
+### 🎯 Job Description Matching (Major Feature)
+
+Users will:
+
+- Paste a job description
+- Upload their CV
+- Receive:
+  - Skill gap analysis
+  - Missing keyword suggestions
+  - Bullet-point rewrites tailored to the role
+  - ATS optimization suggestions
+  - Resume alignment score
+
+---
+
+### ✍ CV Improvement Mode
+
+- Rewritten bullet points with quantified achievements
+- Stronger action verbs
+- Professional tone enhancement
+- Industry-specific keyword injection
+
+---
+
+### 📊 Scoring System
+
+- Readability score
+- Impact score
+- Metrics density score
+- ATS compatibility rating
+
+---
+
+### 🌍 Deployment
+
+- Live production deployment (Render / Railway)
+- Public demo link
+
+---
+
+## 🧪 Running Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/cv-roaster.git
+cd cv-roaster/server
+npm install
+```
+
+Create a `.env` file inside `/server`:
+
+```
+GROQ_API_KEY=your_key_here
+```
+
+Start the server:
+
+```bash
+node server.js
+```
+
+Open:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📌 Vision
+
+CV Roaster is evolving into a smart CV optimization assistant that bridges the gap between:
+
+- What candidates write
+- What recruiters and ATS systems actually look for
+
+The goal is to make resume improvement:
+
+- Data-driven
+- Role-specific
+- Practical
+- Immediate
+
+---
+
+## ⚠️ Disclaimer
+
+This project is for educational and productivity purposes.  
+Roasts may be savage. Career improvements are serious.
